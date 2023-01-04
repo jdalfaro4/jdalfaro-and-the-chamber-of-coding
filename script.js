@@ -1,5 +1,5 @@
 var mHeader = document.querySelector(".mainheader");
-var startBtn = document.querySelector(".startBtn");
+var startBtn = document.querySelector("#startBtn");
 var countdown = document.querySelector("#countdown");
 var quizDiv = document.querySelector(".quiz");
 var startquizDiv = document.querySelector("#startquiz");
@@ -9,6 +9,8 @@ var FinalScore = document.querySelector("#FinalScore");
 var userInitials = document.querySelector("#userInitials");
 var initialsdiv = document.querySelector("#initials");
 var submitBtn = document.querySelector("#submitInitials")
+var highScore = document.querySelector("#highScore");
+var introDescr = document.querySelector("#introDescr");
 let questionNumber = 0
 let score = 0
 let quizQuestions = [
@@ -18,18 +20,16 @@ let quizQuestions = [
         answer : "Michael"
     },
     {
-        question : "Question2",
-        choices : ["choice1","choice2","choice3"],
-        answer : "choice3"
+        question : "Who is the 'Mother of cats'?",
+        choices : ["Kelly","Meredith","Angela"],
+        answer : "Angela"
     },
     {
-        question : "Question3",
-        choices : ["choice_1","choice_2","choice_3"],
-        answer : "choice_1"
+        question : "What is the name of Jim and Pam's daughter?",
+        choices : ["Cece","Roxanne","Grace"],
+        answer : "Cece"
     }
 ]
-
-//Create an initial start button with greeting
 
 //Create a timer for the entire game that reacts to incorrect answers
 var timeLeft = 60;
@@ -84,6 +84,7 @@ function startquiz() {
                 feedbackDiv.innerHTML = ""
                 feedbackDiv.innerHTML = "Incorrect!"
                 questionNumber ++;
+                timeLeft = timeLeft - 15;
                 startquiz()
             }
         })
@@ -91,22 +92,16 @@ function startquiz() {
     }
 
     startquizDiv.append(questionEl,optiondiv)
-    }  
-    else {
+    } else {
     timeLeft = 0;
     displayInitialsPage ()
     }
     
-
-    
     // if(feedbackDiv.innerHTML === "Correct!"){
         
     // }
-
-
-
 }
-
+//game ends when timer reaches 0 or all questoins are answered
 function displayInitialsPage () {
     startquizDiv.innerHTML = "";
     initialsPage.style.display = "block"
@@ -121,15 +116,18 @@ submitBtn.addEventListener ('click', function(event){
         score : score
     }
     localStorage.setItem('quiz_score', JSON.stringify (userData))
-
 })
+
 
 function init() {
     quizTime()
     startquiz()
 }
 
-//game ends when timer reaches 0 or all questoins are answered
+mHeader.setAttribute("style", "text-align : center;")
+mHeader.style.marginTop = "200px";
+startBtn.setAttribute("style", "width : 200px; height : 30px;")
+introDescr.setAttribute("style", "font-size : 18px;")
 
 //create functions to save my initials and score
 
