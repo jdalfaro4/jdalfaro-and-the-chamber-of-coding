@@ -116,8 +116,11 @@ submitBtn.addEventListener ('click', function(event){
         score : score
     }
     localStorage.setItem('quiz_score', JSON.stringify (userData))
-})
 
+    highScore.addEventListener ('click', function(event) {
+        localStorage.getItem(JSON.parse(userData))
+    })
+})
 
 function init() {
     quizTime()
