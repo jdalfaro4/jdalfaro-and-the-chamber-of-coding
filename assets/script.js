@@ -108,18 +108,22 @@ function displayInitialsPage () {
     FinalScore.innerHTML = `${score} out of ${quizQuestions.length*10}`
 
 }
-
+//create functions to save my initials and score
 submitBtn.addEventListener ('click', function(event){
     let initials = userInitials.value;
     let userData = {
         name : initials,
         score : score
     }
-    localStorage.setItem('quiz_score', JSON.stringify (userData))
+    localStorage.setItem('quiz_score', JSON.stringify("userData"))
 
-    highScore.addEventListener ('click', function(event) {
-        localStorage.getItem(JSON.parse(userData))
-    })
+    //create hyperlink on page to access previous top scores
+    
+    // highScore.addEventListener ('click', function(event) {
+    // let results = localStorage.getItem("userData")
+    // let obj = JSON.parse(results);
+    // document.getElementById('demo').innerHTML = obj.userData;
+    // })
 })
 
 function init() {
@@ -132,8 +136,5 @@ mHeader.style.marginTop = "200px";
 startBtn.setAttribute("style", "width : 200px; height : 30px;")
 introDescr.setAttribute("style", "font-size : 18px;")
 
-//create functions to save my initials and score
-
-//create hyperlink on page to access previous top scores
 
 startBtn.addEventListener("click", init);
