@@ -93,13 +93,13 @@ function startquiz() {
 
     startquizDiv.append(questionEl,optiondiv)
     } else {
+        console.log()
     timeLeft = 0;
     displayInitialsPage ()
     }
     
     // if(feedbackDiv.innerHTML === "Correct!"){
         
-    // }
 }
 //game ends when timer reaches 0 or all questoins are answered
 function displayInitialsPage () {
