@@ -4,11 +4,17 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="./assets/reset.css" type="text/css"/>
+    <link rel="stylesheet" href="./assets/style.css" type="text/css"/>
     <title>The Office Trivia Game</title>
   </head>
   <body>
-    <button style="width:125px" id="highScore">Highscores</button>
-    <div style="text-align:right" id="countdown"></div>
+    <button style="width:150px" id="highScore">Highscores</button><div style="text-align:right" id="countdown"></div>
+    <div id="highscorePage">
+      <div id="highscoreName"></div>
+        <div id="highscoreScore">
+      </div>
+    </div>
     <div style="text-align:center" class="quiz">
       <h1 class="mainheader">Welcome to "Who knows what?" - Office Edition</h1>
       <p id="introDescr">If you think you know the office, try your best at the questions that follow. They will test a true Office fan!</p>
@@ -17,13 +23,11 @@
     <div style="text-align: center" id="startquiz">
     </div>
       <div id="initialsPage">
-        <p id="scoreTitle"> Your Score is <span id="FinalScore"></span></p>
+        <p id="scoreTitle"> All done! Your Score is <span id="FinalScore"></span></p>
         <div id="initials">
-          Name : <input type="text" name="userInitials" id="userInitials">
+          Enter initials: <input type="text" name="userInitials" id="userInitials">
         </div>
       <button id="submitInitials">Submit</button>
-        <div id="feedback"></div>
-    
-    <script src="./script.js"></script>
+    <script src="./assets/script.js"></script>
   </body>
 </html>

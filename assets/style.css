@@ -1,1 +1,32 @@
 
+
+
+
+
+
+
+.mainheader {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 30px;
+    margin: 1em;
+}
+
+#introDescr {
+    margin: 1em;
+}
+
+#startBtn {
+    margin: 1em;
+}
+
+#highScore {
+    margin-left: 1em;
+}
+
+#highscoreName {
+    margin-left: 1em;
+}
+
+#highscoreScore {
+    margin-left: 1em;
+}

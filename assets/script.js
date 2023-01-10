@@ -3,14 +3,15 @@ var startBtn = document.querySelector("#startBtn");
 var countdown = document.querySelector("#countdown");
 var quizDiv = document.querySelector(".quiz");
 var startquizDiv = document.querySelector("#startquiz");
-var feedbackDiv = document.querySelector("#feedback");
 var initialsPage = document.querySelector("#initialsPage");
-var FinalScore = document.querySelector("#FinalScore");
+var finalScore = document.querySelector("#FinalScore");
 var userInitials = document.querySelector("#userInitials");
 var initialsdiv = document.querySelector("#initials");
 var submitBtn = document.querySelector("#submitInitials")
 var highScore = document.querySelector("#highScore");
 var introDescr = document.querySelector("#introDescr");
+var highscoreName = document.querySelector("#highscoreName");
+var highscoreScore = document.querySelector("#highscoreScore");
 let questionNumber = 0
 let score = 0
 let quizQuestions = [
@@ -54,11 +55,11 @@ else {
 }
 
 initialsPage.style.display = "none";
-
+let answerCorrect = false;
 function startquiz() {
     if (questionNumber < 3) {
         startquizDiv.innerHTML = "";
-
+    
     let currentquestion = quizQuestions[questionNumber]
     quizDiv.innerHTML = "";
     let questionEl = document.createElement("div");
@@ -75,14 +76,12 @@ function startquiz() {
             console.log(event.target);
             let btnText = event.target.innerHTML;
             if(btnText === currentquestion.answer) {
-                feedbackDiv.innerHTML = ""
-                feedbackDiv.innerHTML = "Correct!"
+                answerCorrect = true;
                 questionNumber ++
                 score = score + 10;
                 startquiz()
             } else {
-                feedbackDiv.innerHTML = ""
-                feedbackDiv.innerHTML = "Incorrect!"
+                answerCorrect = false;
                 questionNumber ++;
                 timeLeft = timeLeft - 15;
                 startquiz()
@@ -90,22 +89,36 @@ function startquiz() {
         })
         optiondiv.append(choiceBtn)
     }
-
-    startquizDiv.append(questionEl,optiondiv)
+    if(questionNumber > 0) {
+        let feedbackEl = document.createElement("div");
+        if(answerCorrect){
+            feedbackEl.innerHTML = "Correct"
+            // create correct div element
+        } else {
+            // create incorrect div element
+            feedbackEl.innerHTML = "Incorrect";
+        }
+        startquizDiv.append(questionEl, optiondiv, feedbackEl);
+        // startquezDiv.append(questionEl, optiondiv, correct/incorrectdiv)
+    } else {
+        startquizDiv.append(questionEl, optiondiv);
+    }
+   // startquizDiv.append(questionEl,optiondiv)
     } else {
         console.log()
     timeLeft = 0;
     displayInitialsPage ()
     }
-    
     // if(feedbackDiv.innerHTML === "Correct!"){
+
+    
         
 }
 //game ends when timer reaches 0 or all questoins are answered
 function displayInitialsPage () {
     startquizDiv.innerHTML = "";
-    initialsPage.style.display = "block"
-    FinalScore.innerHTML = `${score} out of ${quizQuestions.length*10}`
+    initialsPage.style.display = "block";
+    finalScore.innerHTML = `${score} out of ${quizQuestions.length*10}`
 
 }
 //create functions to save my initials and score
@@ -115,15 +128,30 @@ submitBtn.addEventListener ('click', function(event){
         name : initials,
         score : score
     }
-    localStorage.setItem('quiz_score', JSON.stringify("userData"))
-
+    localStorage.setItem('quiz_score', JSON.stringify(userData))
     //create hyperlink on page to access previous top scores
     
-    // highScore.addEventListener ('click', function(event) {
-    // let results = localStorage.getItem("userData")
-    // let obj = JSON.parse(results);
-    // document.getElementById('demo').innerHTML = obj.userData;
-    // })
+})
+
+submitBtn.addEventListener ('click', function(event){
+    initialsPage.innerHTML = ""
+    let startOver = document.createElement("button");
+    startOver.innerHTML = ("Start Over");
+})
+
+
+highScore.addEventListener ('click', function(event) {
+    console.log("John")
+    quizDiv.innerHTML = ""
+    initialsPage.innerHTML = ""
+    let results = localStorage.getItem("quiz_score")
+    let obj = JSON.parse(results);
+    document.getElementById('highscoreName').innerHTML = obj.name;
+    document.getElementById('highscoreScore').innerHTML = obj.score;
+
+    let gobackBtn = document.createElement("button");
+    gobackBtn.innerHTML = ("Go Back");
+
 })
 
 function init() {
