@@ -64,12 +64,15 @@ function startquiz() {
     quizDiv.innerHTML = "";
     let questionEl = document.createElement("div");
     questionEl.innerHTML = currentquestion.question;
+    
+    questionEl.setAttribute("style", "font-size: 30px; margin: 1em;")
 
     let optiondiv = document.createElement("div");
     let choices = currentquestion.choices;
 
     for(let i=0; i< choices.length; i++) {
         let choiceBtn = document.createElement("button");
+        choiceBtn.setAttribute("style", "width : 250px; height : 40px; display : flex; flex-direction : colomn; margin-left: 530px; margin-top : 10px;")
         choiceBtn.innerHTML = choices[i];
         choiceBtn.addEventListener("click", function(event){
             event.preventDefault();
@@ -91,8 +94,9 @@ function startquiz() {
     }
     if(questionNumber > 0) {
         let feedbackEl = document.createElement("div");
+        feedbackEl.setAttribute("style", "font-style: italic; font-size: 20px;")
         if(answerCorrect){
-            feedbackEl.innerHTML = "Correct"
+            feedbackEl.innerHTML = "Correct!"
             // create correct div element
         } else {
             // create incorrect div element
@@ -118,6 +122,7 @@ function startquiz() {
 function displayInitialsPage () {
     startquizDiv.innerHTML = "";
     initialsPage.style.display = "block";
+    initialsPage.setAttribute("style", "font-size: 25px;")
     finalScore.innerHTML = `${score} out of ${quizQuestions.length*10}`
 
 }
@@ -137,6 +142,7 @@ submitBtn.addEventListener ('click', function(event){
     initialsPage.innerHTML = ""
     let startOver = document.createElement("button");
     startOver.innerHTML = ("Start Over");
+
 })
 
 
@@ -148,11 +154,10 @@ highScore.addEventListener ('click', function(event) {
     let obj = JSON.parse(results);
     document.getElementById('highscoreName').innerHTML = obj.name;
     document.getElementById('highscoreScore').innerHTML = obj.score;
-
-    let gobackBtn = document.createElement("button");
-    gobackBtn.innerHTML = ("Go Back");
-
 })
+
+
+
 
 function init() {
     quizTime()
@@ -162,6 +167,7 @@ function init() {
 mHeader.setAttribute("style", "text-align : center;")
 mHeader.style.marginTop = "200px";
 startBtn.setAttribute("style", "width : 200px; height : 30px;")
+submitBtn.setAttribute("style", "width : 200px; height : 30px;")
 introDescr.setAttribute("style", "font-size : 18px;")
 
 
